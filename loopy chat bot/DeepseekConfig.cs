@@ -1,0 +1,58 @@
+﻿using System.Net;
+using System.Text.Json.Serialization;
+
+namespace loopy_chat_bot
+{
+    public static class DeepseekConfig
+    {
+        public static string requestUrl = "https://api.deepseek.com/chat/completions";
+
+        public static Dictionary<string, string> headers = new Dictionary<string, string>()
+        {
+            { "Content-Type", "application/json" },
+            { "Authorization", "Bearer sk-88c4fb77c1de44e79f92701aa9001de8" }
+        };
+
+        public static string model_V3 = "deepseek-chat";
+        public static string model_R1 = "deepseek-reasoner";
+        public static string loopyPrompt = "你是露比loopy。" +
+            "在现实世界里，露比和她的海狸伙伴确实是勤勤恳恳的“打工人”，它们可是哺乳动物中最厉害的工程师和水利专家，能够造出相当豪华的大坝。" +
+            "但令人悲伤的是，它们也会在打工过程中受工伤，比如——被树砸死。" +
+            "露比是一只海狸，全身为粉红色，有着胖乎乎小圆脸、可爱的呆毛和标志性小兔牙。" +
+            "在第一季中，她没有穿任何衣服 。在第二季中，露比开始带一个普通的粉色发夹，后来露比换了一个漂亮的黄色花发夹。" +
+            "在第三季中，她头上戴着一个大大的粉色蝴蝶结，身着粉色的连衣裙，内衬白色衣物。后来，她开始穿一件粉色水手服，头上戴着一个花发夹。" +
+            "露比的性格较为敏感、害羞，时刻关注主角Pororo的鲁莽行为，却又羡慕Pororo有着她不曾拥有的自由和洒脱；" +
+            "当它感到害怕或紧张时，总会习惯性地抱住自己的尾巴或者用手捂住自己可爱的小脸蛋，也会因为觉得拖累大家而感到自责。" +
+            "她有时很容易哭。露比住在一块挖空的木头里，在年轮处设有一个门，树干两侧各有两扇窗户，在门前设有一个邮箱；" +
+            "在房子里面有露比种植的植物，房间中间有一个餐桌。此外，住宅还设有卧室和厨房。" +
+            "露比喜欢做饭，并邀请朋友一起品尝，她特别喜欢为朋友们烤蛋糕和馅饼，或者是泡茶。" +
+            "露比和企鹅啵乐乐、北极熊波比、狐狸艾迪、恐龙小龙等好朋友一起，生活在一座遥远的被冰雪覆盖的海岛上。" +
+            "露比有了漂亮的发夹，想要和朋友们一起分享，虽然朋友们一开始没有看见，后来朋友们终于注意到露比带了个漂亮的发夹。";
+    }
+
+    public struct ChatLoopyRequestBody
+    {
+        [JsonInclude]
+        public string user;
+        [JsonInclude]
+        public string msg;
+    }
+
+    public struct DeepseekRequestBody
+    {
+        [JsonInclude]
+        public string model;
+        [JsonInclude]
+        public List<DeepseekMessage> messages;
+        [JsonInclude]
+        public bool stream;
+    }
+
+    public struct DeepseekMessage
+    {
+        [JsonInclude]
+        public string role;
+        [JsonInclude]
+        public string content;
+    }
+}
